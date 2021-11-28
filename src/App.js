@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import Carousel from './Carousel'
+
+const fetchCarouselData = () => {
+  return fetch('https://randomuser.me/api/?results=20').then(data => data.json())
+}
+
+const parseFetchedData = (results = []) => {
+  return results.slice(0, 5).map((person, idx) => {
+    const { picture: { large: image = '' } = {}, name: { first: firstName, last: lastName } = {} } = person || {}
+    return { id: idx, image, name: firstName.concat(' ', lastName) }
+  })
+}
 
 function App() {
+  const [carouselData, setCarouselData] = useState([])
+
+  useEffect(() => {
+    fetchCarouselData().then(({ results = [] } = {}) => {
+      const parsedData = parseFetchedData(results)
+      setCarouselData(parsedData)
+    })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Carousel data={carouselData} />
+  )
 }
 
 export default App;

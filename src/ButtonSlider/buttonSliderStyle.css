@@ -1,0 +1,19 @@
+.prev {
+	top: 50%;
+	transform: translateY(-60%);
+}
+.next {
+	top: 50%;
+	right: 0px;
+	transform: translateY(-60%);
+}
+.button-slide {
+	position: absolute;
+	cursor: pointer;
+	padding: 0;
+	height: 84px;
+}
+
+.arrow-image {
+	width: 80px;
+}
