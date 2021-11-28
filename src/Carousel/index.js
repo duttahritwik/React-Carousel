@@ -31,6 +31,11 @@ const Carousel = ({ data = [] }) => {
             })}
             <ButtonSlider direction={'next'} changeSlide={nextSlide} />
             <ButtonSlider direction={'prev'} changeSlide={previousSlide} />
+            <div className='container-dots'>
+                {[...new Array(data.length)].map((_, dotIndex) => {
+                    return <div className={dotIndex === slideIndex ? 'bottom-dot active' : 'bottom-dot'} onClick={() => setSlideIndex(dotIndex)} />
+                })}
+            </div>
         </div>
     )
 }

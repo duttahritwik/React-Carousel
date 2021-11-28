@@ -28,3 +28,23 @@
 .active-anim {
 	opacity: 1;
 }
+
+.container-dots {
+	display: flex;
+	position: absolute;
+	bottom: 10px;
+	left: 42%;
+}
+
+.bottom-dot {
+	background-color: #fff;
+	height: 20px;
+	width: 20px;
+	border-radius: 20px;
+	border: 2px solid #fff;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.active {
+	background-color: unset;
+}
